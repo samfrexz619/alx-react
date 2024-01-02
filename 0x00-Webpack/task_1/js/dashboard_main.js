@@ -7,13 +7,13 @@ function addElements () {
   $('<button>').text('Click here to get started').appendTo('body');
   $('<p>').attr('id', 'count').appendTo('body');
   $('<p>').text('Copyright - Holberton School').appendTo('body');
-}
+};
 
 function updateCounter () {
   const counter = parseInt($('#count').text()) || 0;
   counter++;
   $('#count').text(`${counter} clicks on the button`);
-}
+};
 
 $(function () {
   addElements();

@@ -6,6 +6,6 @@ function addParagraphs () {
   $('<p>').text('Copyright - Holberton School').appendTo('body');
 };
 
-$(function () {
+$( function () {
   addParagraphs();
 });
