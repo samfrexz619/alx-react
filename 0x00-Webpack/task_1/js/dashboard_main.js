@@ -10,7 +10,7 @@ function addElements () {
 };
 
 function updateCounter () {
-  const counter = parseInt($('#count').text()) || 0;
+  let counter = parseInt($('#count').text()) || 0;
   counter++;
   $('#count').text(`${counter} clicks on the button`);
 };
