@@ -1,14 +1,6 @@
 import $ from 'jquery';
 import debounce from 'lodash/debounce';
 
-function addElements () {
-  $('<p>').text('Holberton Dashboard').appendTo('body');
-  $('<p>').text('Dashboard data for the students').appendTo('body');
-  $('<button>').text('Click here to get started').appendTo('body');
-  $('<p>').attr('id', 'count').appendTo('body');
-  $('<p>').text('Copyright - Holberton School').appendTo('body');
-};
-
 function updateCounter () {
   let counter = parseInt($('#count').text()) || 0;
   counter++;
@@ -16,6 +8,11 @@ function updateCounter () {
 };
 
 $(function () {
-  addElements();
+  $('body').append('<p>Holberton Dashboard</p>');
+  $('body').append('<p>Dashboard data for the students</p>');
+  $('body').append('<button>Click here to get started</button>');
+  $('<p>').attr('id', 'count').appendTo('body');
+  $('body').append('<p>Copyright - Holberton School</p>');
+
   $('button').on('click', debounce(updateCounter, 500));
 });
