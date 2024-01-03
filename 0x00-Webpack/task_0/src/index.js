@@ -1,11 +1,9 @@
 const $ = require('jquery');
 
-function addParagraphs () {
-  $('<p>').text('Holberton Dashboard').appendTo('body');
-  $('<p>').text('Dashboard data for the students').appendTo('body');
-  $('<p>').text('Copyright - Holberton School').appendTo('body');
-};
+$(function(){
+  let para1 = $("<p>Holberton Dashboard</p>");
+  let para2 = $("<p>Dashboard data for the students</p>");
+  let para3 = $("<p>Copyright - Holberton School</p>");
 
-$( function () {
-  addParagraphs();
+  $("body").append(para1, para2, para3);
 });
