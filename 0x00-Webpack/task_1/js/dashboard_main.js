@@ -17,5 +17,5 @@ function updateCounter () {
 
 $(function () {
   addElements();
-  $('button').on('click', debounce(updateCounter, 100));
+  $('button').on('click', debounce(updateCounter, 500));
 });
