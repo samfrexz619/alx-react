@@ -12,5 +12,5 @@ describe('Util', () => {
  
   test('render some texts', () => {
    expect(getLatestNotification()).toBe('<strong>Urgent requirement</strong> - complete by EOD')
-  })
+  });
 });
