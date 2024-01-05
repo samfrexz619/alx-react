@@ -6,7 +6,7 @@ module.exports = {
 
   output: {
     path: path.resolve(__dirname, 'public'),
-    filename: 'bundle[contenthash].js',
+    filename: 'bundle.js',
     // assetModuleFilename: '[name][ext]',
   },
   performance: {
@@ -26,7 +26,7 @@ module.exports = {
       },
       {
         test: /\.(png|svg|jpg|jpeg|gif)$/i,
-        type: 'asset/resource',
+        // type: 'asset/resource',
         use: [
           'file-loader',
           {
