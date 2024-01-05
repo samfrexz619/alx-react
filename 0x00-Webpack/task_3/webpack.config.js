@@ -1,5 +1,6 @@
 const path = require('path');
 const HtmlWebpackPlugin = require('html-webpack-plugin')
+const { CleanWebpackPlugin } = require('clean-webpack-plugin');
 
 
 module.exports = {
@@ -35,7 +36,7 @@ module.exports = {
   performance: {
     maxAssetSize: 1000000,
   },
-  devtool: 'source-map', //for debugging
+  devtool: 'inline-source-map', //for debugging
   devServer: {
     static: {
       directory: path.resolve(__dirname, 'public') 
@@ -71,6 +72,7 @@ module.exports = {
   plugins: [
     new HtmlWebpackPlugin({
       filename: './index.html'
-    })
+    }),
+    new CleanWebpackPlugin(),
   ],
 };
