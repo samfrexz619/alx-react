@@ -23,29 +23,24 @@ module.exports = {
   output: {
     path: path.resolve(__dirname, 'public'),
     filename: '[name].bundle.js',
-    clean: true,
+    // clean: true,
   },
   optimization: {
 		splitChunks: {
 			chunks: 'all',
 		},
 	},
-  // optimization: {
-  //   usedExports: true,
-  // },
   performance: {
     maxAssetSize: 1000000,
   },
   devtool: 'inline-source-map', //for debugging
   devServer: {
-    static: {
-      directory: path.join(__dirname, './public') 
-    },
+    static: path.join(__dirname, './public'),
     port: 8564,
     open: true, //this is to open the browser automatically
-    hot: true,
-    compress: true,
-    historyApiFallback: true
+    // hot: true,
+    // compress: true,
+    // historyApiFallback: true
   },
   module: {
     rules: [
