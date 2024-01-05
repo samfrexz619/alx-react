@@ -8,11 +8,11 @@ module.exports = {
     path: path.resolve(__dirname, 'public'),
     filename: 'bundle[contenthash].js',
     // assetModuleFilename: '[name][ext]',
-    performance: {
-      hints: false,
-      maxEntrypointSize: 512000,
-      maxAssetSize: 512000,
-    },
+  },
+  performance: {
+    hints: false,
+    maxEntrypointSize: 512000,
+    maxAssetSize: 512000,
   },
 
   module: {
