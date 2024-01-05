@@ -39,7 +39,7 @@ module.exports = {
   devtool: 'inline-source-map', //for debugging
   devServer: {
     static: {
-      directory: path.resolve(__dirname, 'public') 
+      directory: path.join(__dirname, './public') 
     },
     port: 8564,
     open: true, //this is to open the browser automatically
