@@ -8,7 +8,7 @@ module.exports = {
     path: path.resolve(__dirname, 'public'),
     filename: 'bundle.js',
   },
-  
+
   performance: {
     hints: false,
     maxEntrypointSize: 512000,
@@ -30,10 +30,10 @@ module.exports = {
             options: {
               bypassOnDebug: true,
               disable: true,
-            }
-          }
-        ]
-      }
-    ]
+            },
+          },
+        ],
+      },
+    ],
   },
 };
