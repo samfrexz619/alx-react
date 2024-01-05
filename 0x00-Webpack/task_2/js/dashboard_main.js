@@ -1,6 +1,5 @@
 import $ from 'jquery';
 import _ from 'lodash';
-import logo from '../assets/holberton-logo.jpg'
 import '../css/main.css'
 
 
@@ -13,7 +12,7 @@ function updateCounter () {
 let debounce = _.debounce(updateCounter, 500);
 
 $(function () {
-  $('<div>').attr('id', 'logo').css('background-image', `url(${logo})`).appendTo('body');
+  $('body').append('<div id="logo"></div>');  
   $('body').append('<p>Holberton Dashboard</p>');
   $('body').append('<p>Dashboard data for the students</p>');
   $('body').append('<button>Click here to get started</button>');
