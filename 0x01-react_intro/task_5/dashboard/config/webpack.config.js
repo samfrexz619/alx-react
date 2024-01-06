@@ -2,7 +2,7 @@ const path = require('path')
 
 module.export = {
   mode: 'development',
-  entry: '../src/index.js',
+  entry: path.resolve(__dirname, '../src/index.js'),
 
   output: {
     path: path.resolve('../dist'),
@@ -20,9 +20,8 @@ module.export = {
   devServer: {
     contentBase: path.resolve("./dist"),
     port: 3000,
-    open: true, //this is to open the browser automatically
     hot: true,
-    compress: true,
+    // compress: true,
   },
 
   modules: {
