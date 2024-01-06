@@ -1,16 +1,13 @@
 const path = require('path')
 const HtmlWebpackPlugin = require('html-webpack-plugin')
 
-
-module.export = {
-  mode: 'development',
+module.exports = {
   entry: path.resolve(__dirname, '..', './src/index.js'),
-  resolve: {
-    extensions: ['.js']
-  },
+
+  mode: 'development',
 
   output: {
-    path: path.resolve(__dirname, '..', './dist'),
+    path: path.join(__dirname, '..', 'dist'),
     filename: 'bundle.js',
   },
 
@@ -20,52 +17,48 @@ module.export = {
     maxAssetSize: 512000,
   },
 
-  devtool: 'inline-source-map',
-
   devServer: {
-    contentBase: path.resolve("./dist"),
     port: 3000,
     hot: true,
-    // compress: true,
+    open: true,
   },
+  
+  plugins: [
+    new HtmlWebpackPlugin({
+      template: path.resolve(__dirname, '..', './src/index.html')
+    })
+  ],
 
-  modules: {
+  module: {
     rules: [
-      {
-        test: /\.css$/,
-        use: [
-          'style-loader',
-          'css-loader',
-        ],
-      },
       { //babel loader
-        test: /\.js$/,
+        test: /\.(js)x?$/,
         exclude: /node_modules/,
         use: {
           loader: 'babel-loader',
           options: {
-            presets: ['@babel/preset-env']
-          }
+            presets: ['@babel/preset-env', '@babel/preset-react'],
+          },
         }
       },
       {
-        test: /\.(png|svg|jp?g|gif)$/i,
-        use: [
-          'file-loader',
-          {
-            loader: 'image-webpack-loader',
-            options: {
-              bypassOnDebug: true,
-              disable: true,
-            },
-          },
-        ],
+        test: /\.css$/,
+        use: [ 'style-loader', 'css-loader', ],
+      },
+      {
+        test: /\.(?:ico|png|svg|jpeg|jpg|gif)$/i,
+        type: 'asset/resource',
+        // use: [
+        //   'file-loader',
+        //   {
+        //     loader: 'image-webpack-loader',
+        //     options: {
+        //       bypassOnDebug: true,
+        //       disable: true,
+        //     },
+        //   },
+        // ],
       },
     ]
-  },
-  plugins: [
-    new HtmlWebpackPlugin({
-      template: path.resolve(__dirname, '..', './dist/index.html')
-    })
-  ]
+  }
 }
