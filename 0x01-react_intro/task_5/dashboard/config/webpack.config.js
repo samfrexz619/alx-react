@@ -7,7 +7,7 @@ module.export = {
   output: {
     path: path.resolve('dist'),
     filename: 'bundle.js',
-    assetModuleFilename: '[name][ext]'
+    // assetModuleFilename: '[name][ext]'
   },
 
   performance: {
