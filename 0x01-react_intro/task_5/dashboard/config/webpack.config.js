@@ -48,16 +48,16 @@ module.exports = {
       {
         test: /\.(?:ico|png|svg|jpeg|jpg|gif)$/i,
         type: 'asset/resource',
-        // use: [
-        //   'file-loader',
-        //   {
-        //     loader: 'image-webpack-loader',
-        //     options: {
-        //       bypassOnDebug: true,
-        //       disable: true,
-        //     },
-        //   },
-        // ],
+        use: [
+          'file-loader',
+          {
+            loader: 'image-webpack-loader',
+            options: {
+              bypassOnDebug: true,
+              disable: true,
+            },
+          },
+        ],
       },
     ]
   }
