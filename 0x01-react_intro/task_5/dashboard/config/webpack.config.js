@@ -2,15 +2,21 @@ const path = require('path')
 
 module.export = {
   mode: 'development',
-  entry: path.resolve(__dirname, 'src/index.js'),
+  entry: './src/index.js',
 
   output: {
-    path: path.resolve(__dirname, 'dist'),
+    path: path.resolve('dist'),
     filename: 'bundle.js',
     assetModuleFilename: '[name][ext]'
   },
 
-  devtool: 'inline-source-map', //for debugging
+  performance: {
+    hints: false,
+    maxEntrypointSize: 512000,
+    maxAssetSize: 512000,
+  },
+
+  devtool: 'inline-source-map',
 
   devServer: {
     static: {
@@ -32,10 +38,19 @@ module.export = {
           'css-loader',
         ],
       },
-       {//asset loader
-        test: /\.(png|svg|jpeg|jpg|gif)$/i,
-        type: 'asset/resource'
-      }
+      {
+        test: /\.(png|svg|jp?g|gif)$/i,
+        use: [
+          'file-loader',
+          {
+            loader: 'image-webpack-loader',
+            options: {
+              bypassOnDebug: true,
+              disable: true,
+            },
+          },
+        ],
+      },
     ]
   }
 }
