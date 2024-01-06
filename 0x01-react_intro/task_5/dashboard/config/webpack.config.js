@@ -5,9 +5,8 @@ module.export = {
   entry: './src/index.js',
 
   output: {
-    path: path.resolve('dist'),
+    path: path.resolve('./dist'),
     filename: 'bundle.js',
-    // assetModuleFilename: '[name][ext]'
   },
 
   performance: {
@@ -19,14 +18,11 @@ module.export = {
   devtool: 'inline-source-map',
 
   devServer: {
-    static: {
-      directory: path.resolve(__dirname, 'dist') 
-    },
+    contentBase: path.resolve("./dist"),
     port: 3000,
     open: true, //this is to open the browser automatically
     hot: true,
     compress: true,
-    historyApiFallback: true
   },
 
   modules: {
