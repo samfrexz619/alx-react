@@ -1,11 +1,16 @@
 const path = require('path')
+const HtmlWebpackPlugin = require('html-webpack-plugin')
+
 
 module.export = {
   mode: 'development',
-  entry: path.resolve(__dirname, '../src/index.js'),
+  entry: path.resolve(__dirname, '..', './src/index.js'),
+  resolve: {
+    extensions: ['.js']
+  },
 
   output: {
-    path: path.resolve('../dist'),
+    path: path.resolve(__dirname, '..', './dist'),
     filename: 'bundle.js',
   },
 
@@ -33,6 +38,16 @@ module.export = {
           'css-loader',
         ],
       },
+      { //babel loader
+        test: /\.js$/,
+        exclude: /node_modules/,
+        use: {
+          loader: 'babel-loader',
+          options: {
+            presets: ['@babel/preset-env']
+          }
+        }
+      },
       {
         test: /\.(png|svg|jp?g|gif)$/i,
         use: [
@@ -47,5 +62,10 @@ module.export = {
         ],
       },
     ]
-  }
+  },
+  plugins: [
+    new HtmlWebpackPlugin({
+      template: path.resolve(__dirname, '..', './dist/index.html')
+    })
+  ]
 }
