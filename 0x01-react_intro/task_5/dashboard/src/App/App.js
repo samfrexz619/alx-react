@@ -1,7 +1,7 @@
 import React from 'react';
-import logo from './holberton-logo.jpg';
+import logo from '../assets/holberton-logo.jpg';
+import { getFooterCopy, getFullYear } from '../utils/utils.js';
 import './App.css';
-// import { getFooterCopy, getFullYear } from './utils';
 
 function App() {
   return (
@@ -23,7 +23,7 @@ function App() {
         </div>
       </div>
       <div className="App-footer">
-        <p><i>Copyright 2024</i></p>
+        <p><i>Copyright { getFullYear() } - { getFooterCopy(true)}</i></p>
       </div>
     </div>
   );

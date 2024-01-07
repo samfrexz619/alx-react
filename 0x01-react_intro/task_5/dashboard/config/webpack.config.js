@@ -1,6 +1,7 @@
 const path = require('path')
 const HtmlWebpackPlugin = require('html-webpack-plugin')
 
+
 module.exports = {
   entry: path.resolve(__dirname, '..', './src/index.js'),
 
@@ -9,24 +10,25 @@ module.exports = {
   output: {
     path: path.join(__dirname, '..', 'dist'),
     filename: 'bundle.js',
+    assetModuleFilename: '[name][ext]'
   },
 
   performance: {
-    hints: false,
-    maxEntrypointSize: 512000,
-    maxAssetSize: 512000,
+    maxAssetSize: 1000000,
+    maxEntrypointSize: 1000000,
   },
 
   devServer: {
     port: 3000,
     hot: true,
     open: true,
+    compress: true,
   },
   
   plugins: [
     new HtmlWebpackPlugin({
-      template: path.resolve(__dirname, '..', './src/index.html')
-    })
+      template: path.resolve(__dirname, '..', './dist/index.html')
+    }),
   ],
 
   module: {
@@ -36,9 +38,6 @@ module.exports = {
         exclude: /node_modules/,
         use: {
           loader: 'babel-loader',
-          options: {
-            presets: ['@babel/preset-env', '@babel/preset-react'],
-          },
         }
       },
       {
@@ -49,7 +48,7 @@ module.exports = {
         test: /\.(?:ico|png|svg|jpeg|jpg|gif)$/i,
         type: 'asset/resource',
         use: [
-          'file-loader',
+          // 'file-loader',
           {
             loader: 'image-webpack-loader',
             options: {

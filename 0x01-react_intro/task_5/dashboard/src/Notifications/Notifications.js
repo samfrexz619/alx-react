@@ -1,10 +1,10 @@
 import React from 'react'
-import close from './close-icon.png'
+import close from '../assets/close-icon.png'
+import { getLatestNotification } from '../utils/utils.js';
 import './Notifications.css'
-import { getLatestNotification } from './utils';
 
 
-const Notification = () => {
+const Notifications = () => {
 
   const handleClose =()=> {
     console.log('Close button has been clicked')
@@ -33,4 +33,4 @@ const Notification = () => {
   )
 }
 
-export default Notification;
+export default Notifications;
