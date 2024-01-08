@@ -1,6 +1,7 @@
 import React from 'react'
 import close from '../assets/close-icon.png'
 import { getLatestNotification } from '../utils/utils.js';
+import NotificationItem from './NotificationItem.js';
 import './Notifications.css'
 
 
@@ -14,9 +15,18 @@ const Notifications = () => {
     <div className='Notifications'>
       <p>Here is the list of notifications</p>
       <ul>
-        <li data-priority='default'>New course available</li>
-        <li data-priority='urgent'>New resume available</li>
-        <li style={{color: 'red'}} dangerouslySetInnerHTML={{__html: getLatestNotification()}} />
+        <NotificationItem 
+          value={'New course available'}
+          type={'default'}
+        />
+        <NotificationItem 
+          value={'New resume available'}
+          type={'urgent'}
+        />
+        <NotificationItem 
+          type={'urgent'}
+          html={getLatestNotification()}
+        />
       </ul>
       <button
         onClick={handleClose}
