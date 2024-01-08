@@ -1,3 +1,5 @@
+/** @jest-environment jsdom */
+import React from 'react'
 import { shallow } from 'enzyme'
 import Notifications from './Notifications.js'
 
