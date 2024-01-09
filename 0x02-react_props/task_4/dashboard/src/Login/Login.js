@@ -3,7 +3,7 @@ import './Login.css'
 
 const Login = () => {
   return (
-    <div className='App-body'>
+    <div className=''>
       <div>
         <p>Login to access the full dashboard</p>
         <label htmlFor="mail">Email</label> &nbsp; 
