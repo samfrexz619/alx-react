@@ -23,11 +23,13 @@ module.exports = {
     hot: true,
     open: true,
     compress: true,
+    historyApiFallback: true,
   },
   
   plugins: [
     new HtmlWebpackPlugin({
-      template: path.resolve(__dirname, '..', './dist/index.html')
+      template: path.resolve(__dirname, '..', './dist/index.html'),
+      favicon: path.resolve(__dirname, '..', './dist/favicon.ico')
     }),
   ],
 
