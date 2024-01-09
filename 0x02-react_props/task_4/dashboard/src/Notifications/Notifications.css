@@ -1,17 +1,30 @@
-.Notifications {
-  border: 1px dashed #DF354B;
-  padding: 20px 10px;
-  position: relative;
+.menuItem {
+  width: 100%;
+  display: flex;
+  justify-content: flex-end;
+  padding: 15px 3px;
+  margin: 0 auto;
 }
 
-ul {
+.Notifications {
+  width: 400px;
+  padding: 10px 20px;
+  border: 1px dashed #DF354B;
+  position: relative;
+  height: 130px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.Notifications ul {
   padding-left: 35px;
 }
 
-ul li[data-priority='default'] {
+.Notifications ul li[data-priority='default'] {
   color: blue;
 }
 
-ul li[data-priority='urgent'] {
+.Notifications ul li[data-priority='urgent'] {
   color: red;
 }

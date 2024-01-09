@@ -11,8 +11,10 @@ import './App.css'
 const App = ({isLoggedIn}) => {
   return ( 
     <>
-      <Notification  />
       <div className="App">
+        <div className="App-notif">
+          <Notification  />
+        </div>
         <Header />
         <div className="App-body">
           {isLoggedIn ? <CourseList  /> : <Login  />}
@@ -24,10 +26,10 @@ const App = ({isLoggedIn}) => {
 }
 
 App.defaultProps = {
-  isLoggedIn: true,
+  isLoggedIn: false,
 }
 
-App.PropTypes = {
+App.propTypes = {
   isLoggedIn: PropTypes.bool,
 }
 export default App;
