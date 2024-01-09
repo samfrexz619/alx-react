@@ -17,7 +17,9 @@ describe('<NotificationItem  />', () => {
   })
 
   it('should render html', () => {
-    const html = "<u>test</u>"
+    const html = {
+      __html: "<u>test</u>"
+    }
     const wrapper = shallow(<NotificationItem html={html} />)
     const liElement = wrapper.find('li')
     expect(liElement.prop('dangerouslySetInnerHTML')).toEqual({

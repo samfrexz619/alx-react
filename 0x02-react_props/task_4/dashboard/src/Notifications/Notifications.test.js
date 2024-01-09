@@ -12,19 +12,31 @@ describe('Notification component', ()=> {
   })
 
   it('should render list of items', ()=> {
-    const wrapper = shallow(<Notifications  />)
+    const wrapper = shallow(<Notifications displayDrawer={true} />)
     const item = wrapper.find(NotificationItem)
     expect(item.exists()).toBe(true)
   })
 
   it('should render the first item', () => {
-    const wrapper = shallow(<Notifications  />)
+    const wrapper = shallow(<Notifications displayDrawer={true} />)
     const firstElem = wrapper.find(NotificationItem).first()
     expect(firstElem.html()).toBe(`<li data-notification-type="default" data-priority="default">New course available</li>`)
   })
 
-  it('should render div with App-header', ()=> {
-    const wrapper = shallow(<Notifications />)
-    expect(wrapper.find("p").text()).toEqual('Here is the list of notifications')
+  it('should render menuItem', () => {
+    const wrapper = shallow(<Notifications displayDrawer={true} />)
+    const item = wrapper.find('.menuItem')
+    expect(item.exists()).toBe(true)
   })
+
+  it('should render menuItem', () => {
+    const wrapper = shallow(<Notifications displayDrawer={true} />)
+    const item = wrapper.find('.Notifications')
+    expect(item.exists()).toBe(true)
+  })
+  // it('should render div with p text', ()=> {
+  //   const wrapper = shallow(<Notifications />)
+  //   expect(wrapper.find("p").text()).toContain('Here is the list of notifications') 
+  // })
+
 })

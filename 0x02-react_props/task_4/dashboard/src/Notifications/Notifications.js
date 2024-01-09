@@ -17,7 +17,7 @@ const Notifications = ({ displayDrawer }) => {
       <div className="menuItem">
         <p>Your Notifiations</p>
       </div>
-      { displayDrawer &&
+      { displayDrawer && 
         <div className='Notifications'>
           <p>Here is the list of notifications</p>
           <ul>

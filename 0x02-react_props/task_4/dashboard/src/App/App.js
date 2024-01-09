@@ -17,7 +17,7 @@ const App = ({isLoggedIn}) => {
         </div>
         <Header />
         <div className="App-body">
-          {isLoggedIn ? <CourseList  /> : <Login  />}
+          {!isLoggedIn ? <Login  /> : <CourseList  />}
         </div>
         <Footer  />
       </div>
