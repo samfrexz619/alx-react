@@ -1,7 +1,7 @@
 /** @jest-environment jsdom */
 import React from 'react'
 import { shallow } from 'enzyme'
-import { App } from './App.js'
+import App from './App.js'
 import Login from '../Login/Login.js'
 import CourseList from '../CourseList/CourseList.js'
 import Notifications from '../Notifications/Notifications.js'
