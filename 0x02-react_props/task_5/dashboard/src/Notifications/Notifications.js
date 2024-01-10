@@ -19,11 +19,17 @@ const Notifications = ({ displayDrawer, listNotifications }) => {
       </div>
       { displayDrawer && 
         <div className='Notifications'>
-          <p>Here is the list of notifications</p>
+          <h4>
+            {
+              listNotifications.length > 0
+              ? 'Here is the list of notifications'
+              : 'No new notification for now'
+            }
+          </h4>
           <ul>
             {
               listNotifications.length > 0
-              ? listNotifications.map(({id, type, value, html}) => (
+              && listNotifications.map(({id, type, value, html}) => (
                 <NotificationItem
                   key={id}
                   value={value}
@@ -31,7 +37,6 @@ const Notifications = ({ displayDrawer, listNotifications }) => {
                   html={html}
                 />
               ))
-              : <p>No new notification for now</p>
             }
           </ul>
           <button
