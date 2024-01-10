@@ -51,11 +51,11 @@ export class App extends React.Component {
       <React.Fragment>
         <div className="App">
           <div className="App-notif">
-            <Notification listNotifications={listNotifications} />
+            <Notification listNotifications={this.listNotifications} />
           </div>
           <Header />
           <div className="App-body">
-            {this.props.isLoggedIn ? <CourseList listCourses={listCourses} /> : <Login  />}
+            {this.props.isLoggedIn ? <CourseList listCourses={this.listCourses} /> : <Login  />}
           </div>
           <Footer  />
         </div>
