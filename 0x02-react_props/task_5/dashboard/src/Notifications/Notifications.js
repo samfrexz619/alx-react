@@ -3,10 +3,11 @@ import Proptypes from 'prop-types'
 import close from '../assets/close-icon.png'
 import { getLatestNotification } from '../utils/utils.js';
 import NotificationItem from './NotificationItem.js';
+import NotificationItemShape from './NotificationItemShape.js';
 import './Notifications.css'
 
 
-const Notifications = ({ displayDrawer }) => {
+const Notifications = ({ displayDrawer, listNotifications }) => {
 
   const handleClose =()=> {
     console.log('Close button has been clicked')
@@ -21,7 +22,19 @@ const Notifications = ({ displayDrawer }) => {
         <div className='Notifications'>
           <p>Here is the list of notifications</p>
           <ul>
-            <NotificationItem
+            {
+              listNotifications.length > 0
+              ? listNotifications.map(({id, type, value, html}) => (
+                <NotificationItem
+                  key={id}
+                  value={value}
+                  type={type}
+                  html={html}
+                />
+              ))
+              : <p>No new notification for now</p>
+            }
+            {/* <NotificationItem
               value={'New course available'}
               type={'default'}
             />
@@ -32,7 +45,7 @@ const Notifications = ({ displayDrawer }) => {
             <NotificationItem
               type={'urgent'}
               html={getLatestNotification()}
-            />
+            /> */}
           </ul>
           <button
             onClick={handleClose}
@@ -53,11 +66,13 @@ const Notifications = ({ displayDrawer }) => {
 }
 
 Notifications.defaultProps = {
-  displayDrawer: false
+  displayDrawer: false,
+  listNotifications: []
 }
 
 Notifications.proptypes = {
-  displayDrawer: Proptypes.bool
+  displayDrawer: Proptypes.bool,
+  listNotifications: Proptypes.arrayOf(NotificationItemShape)
 }
 
 export default Notifications;
