@@ -9,58 +9,59 @@ import { getLatestNotification } from "../utils/utils";
 import './App.css'
 
 
-const App = ({isLoggedIn}) => {
+export class App extends React.Component {
+  render() {
+    const listCourses = [
+      {
+        id: 1,
+        name: 'ES6',
+        credit: '60'
+      },
+      {
+        id: 2,
+        name: 'Webpack',
+        credit: '20'
+      },
+      {
+        id: 3,
+        name: 'React',
+        credit: '40'
+      },
+    ]
 
-  const listCourses = [
-    {
-      id: 1,
-      name: 'ES6',
-      credit: '60'
-    },
-    {
-      id: 2,
-      name: 'Webpack',
-      credit: '20'
-    },
-    {
-      id: 3,
-      name: 'React',
-      credit: '40'
-    },
-  ]
+    const listNotifications = [
+      {
+        id: 1,
+        type: 'default',
+        value: 'New course available',
+      },
+      {
+        id: 2,
+        type: 'urgent',
+        value: 'New resume available',
+      },
+      {
+        id: 3,
+        type: 'urgent',
+        html: getLatestNotification()
+      },
+   ]
 
-  const listNotifications = [
-    {
-      id: 1,
-      type: 'default',
-      value: 'New course available',
-    },
-    {
-      id: 2,
-      type: 'urgent',
-      value: 'New resume available',
-    },
-    {
-      id: 3,
-      type: 'urgent',
-      html: getLatestNotification()
-    },
-  ]
-
-  return ( 
-    <>
-      <div className="App">
-        <div className="App-notif">
-          <Notification listNotifications={listNotifications} />
+    return(
+      <>
+        <div className="App">
+          <div className="App-notif">
+            <Notification listNotifications={listNotifications} />
+          </div>
+          <Header />
+          <div className="App-body">
+            {this.props.isLoggedIn ? <CourseList listCourses={listCourses} /> : <Login  />}
+          </div>
+          <Footer  />
         </div>
-        <Header />
-        <div className="App-body">
-          {!isLoggedIn ? <Login  /> : <CourseList listCourses={listCourses} />}
-        </div>
-        <Footer  />
-      </div>
-    </>
-   );
+     </>
+    )
+  }
 }
 
 App.defaultProps = {
@@ -70,4 +71,3 @@ App.defaultProps = {
 App.propTypes = {
   isLoggedIn: PropTypes.bool,
 }
-export default App;
