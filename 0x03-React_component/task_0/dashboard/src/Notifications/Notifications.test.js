@@ -39,16 +39,26 @@ describe('Notification component', ()=> {
     expect(item.exists()).toBe(false)
   })
 
-  // it('should render the first item', () => {
-  //   const wrapper = shallow(<Notifications displayDrawer={true} listNotifications={listNotifications} />)
-  //   const firstElem = wrapper.find(NotificationItem).first()
-  //   expect(firstElem.html()).toBe(`<li data-notification-type="default" data-priority="default">No new notification for now</li>`)
-  // })
+  it('should not render Your Notifiations', ()=> {
+    const wrapper = shallow(<Notifications />)
+    const item = wrapper.find('.menuItem')
+    expect(item.text()).toBe('Your Notifiations')
+  })
+
+  it('should render the first item', () => {
+    const wrapper = shallow(<Notifications displayDrawer={true} listNotifications={listNotifications} />)
+    const firstElem = wrapper.find(NotificationItem).first()
+    expect(firstElem.html()).toBe(`<li data-notification-type="default" data-priority="default">New course available</li>`)
+  })
 
   it('should render the three NotificationItem components ', () => {
     const wrapper = shallow(<Notifications displayDrawer={true} listNotifications={listNotifications} />)
-    expect(wrapper.exists()).toBe(true)
     expect(wrapper.find(NotificationItem)).toHaveLength(3)
+  })
+
+  it('should render the NotificationItem components ', () => {
+    const wrapper = shallow(<Notifications displayDrawer={true} listNotifications={listNotifications} />)
+    expect(wrapper.exists()).toBe(true)
   })
 
   it('should render menuItem', () => {
