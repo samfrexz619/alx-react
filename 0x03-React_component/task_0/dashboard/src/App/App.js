@@ -48,7 +48,7 @@ export class App extends React.Component {
    ]
 
     return(
-      <>
+      <React.Fragment>
         <div className="App">
           <div className="App-notif">
             <Notification listNotifications={listNotifications} />
@@ -59,15 +59,15 @@ export class App extends React.Component {
           </div>
           <Footer  />
         </div>
-     </>
+     </React.Fragment>
     )
   }
-}
+};
 
 App.defaultProps = {
   isLoggedIn: false,
-}
+};
 
 App.propTypes = {
   isLoggedIn: PropTypes.bool,
-}
+};
