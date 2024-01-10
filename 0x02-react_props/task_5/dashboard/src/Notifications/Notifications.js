@@ -1,70 +1,98 @@
+/** @jest-environment jsdom */
 import React from 'react'
-import Proptypes from 'prop-types'
-import close from '../assets/close-icon.png'
-import NotificationItem from './NotificationItem.js';
-import NotificationItemShape from './NotificationItemShape.js';
-import './Notifications.css'
+import { shallow } from 'enzyme'
+import Notifications from './Notifications.js'
+import NotificationItem from './NotificationItem.js'
+import { getLatestNotification } from '../utils/utils.js'
 
 
-const Notifications = ({ displayDrawer, listNotifications }) => {
+describe('Notification component', ()=> {
 
-  const handleClose =()=> {
-    console.log('Close button has been clicked')
-  };
+  const arr = [];
 
-  return (
-    <>
-      <div className="menuItem">
-        <p>Your Notifiations</p>
-      </div>
-      { displayDrawer && 
-        <div className='Notifications'>
-          <h4>
-            {
-              listNotifications.length > 0
-              ? 'Here is the list of notifications'
-              : 'No new notification for now'
-            }
-          </h4>
-          <ul>
-            {
-              listNotifications.length > 0
-              && listNotifications.map(({id, type, value, html}) => (
-                <NotificationItem
-                  key={id}
-                  value={value}
-                  type={type}
-                  html={html}
-                />
-              ))
-            }
-          </ul>
-          <button
-            onClick={handleClose}
-            style={{
-              border: 'none',
-              position: 'absolute',
-              top: '1rem',
-              right: '5px',
-              cursor: 'pointer',
-            }}
-            aria-label='Close'>
-            <img src={close} alt="close-icon" width={17} />
-          </button>
-        </div>
-      }
-    </>
-  )
-}
+  const listNotifications = [
+    {
+      id: 1,
+      type: 'default',
+      value: 'New course available',
+    },
+    {
+      id: 2,
+      type: 'urgent',
+      value: 'New resume available',
+    },
+    {
+      id: 3,
+      type: 'urgent',
+      html: getLatestNotification()
+    },
+  ]
 
-Notifications.defaultProps = {
-  displayDrawer: false,
-  listNotifications: []
-}
+  it('should render Notification component without crashing', () => {
+    const wrapper = shallow(<Notifications />)
+    expect(wrapper.exists()).toBe(true)
+  })
 
-Notifications.proptypes = {
-  displayDrawer: Proptypes.bool,
-  listNotifications: Proptypes.arrayOf(NotificationItemShape)
-}
+  it('should render list of items', ()=> {
+    const wrapper = shallow(<Notifications displayDrawer={true} listNotifications={arr} />)
+    const item = wrapper.find(NotificationItem)
+    expect(item.exists()).toBe(false)
+  })
 
-export default Notifications;
+  it('should not render Your Notifiations', ()=> {
+    const wrapper = shallow(<Notifications />)
+    const item = wrapper.find('.menuItem')
+    expect(item.text()).toBe('Your Notifiations')
+  })
+
+  it('should render the first item', () => {
+    const wrapper = shallow(<Notifications displayDrawer={true} listNotifications={listNotifications} />)
+    const firstElem = wrapper.find(NotificationItem).first()
+    expect(firstElem.html()).toBe(`<li data-notification-type="default" data-priority="default">New course available</li>`)
+  })
+
+  it('should render the three NotificationItem components ', () => {
+    const wrapper = shallow(<Notifications displayDrawer={true} listNotifications={listNotifications} />)
+    expect(wrapper.find(NotificationItem)).toHaveLength(3)
+  })
+
+  it('should render the NotificationItem components ', () => {
+    const wrapper = shallow(<Notifications displayDrawer={true} listNotifications={listNotifications} />)
+    expect(wrapper.exists()).toBe(true)
+  })
+
+  it('should render menuItem', () => {
+    const wrapper = shallow(<Notifications displayDrawer={true} />)
+    const item = wrapper.find('.menuItem')
+    expect(item.exists()).toBe(true)
+    expect(item.text()).toEqual('Your Notifiations')
+  })
+
+  it('should render menuItem', () => {
+    const wrapper = shallow(<Notifications displayDrawer={true} />)
+    const item = wrapper.find('.Notifications')
+    expect(item.exists()).toBe(true)
+  })
+
+  it('should render different text when prop is empty', ()=> {
+    const trueWrapper = shallow(<Notifications displayDrawer={true} listNotifications={listNotifications} />)
+
+    const firstText = trueWrapper.find('h4')
+
+    expect(firstText.exists()).toBe(true)
+
+    expect(firstText.html()).toEqual('<h4>Here is the list of notifications</h4>')
+  })
+
+  it('should render \'No new notification for now\' when prop is empty', ()=> {
+    const falseWrapper = shallow(<Notifications displayDrawer={true} listNotifications={[]} />)
+
+    const falseText = falseWrapper.find('h4')
+
+    expect(falseText.exists()).toBe(true)
+
+    expect(falseText.html()).toEqual('<h4>No new notification for now</h4>')
+  })
+  
+
+})
