@@ -1,7 +1,6 @@
 import React from 'react'
 import Proptypes from 'prop-types'
 import close from '../assets/close-icon.png'
-import { getLatestNotification } from '../utils/utils.js';
 import NotificationItem from './NotificationItem.js';
 import NotificationItemShape from './NotificationItemShape.js';
 import './Notifications.css'
@@ -34,18 +33,6 @@ const Notifications = ({ displayDrawer, listNotifications }) => {
               ))
               : <p>No new notification for now</p>
             }
-            {/* <NotificationItem
-              value={'New course available'}
-              type={'default'}
-            />
-            <NotificationItem
-              value={'New resume available'}
-              type={'urgent'}
-            />
-            <NotificationItem
-              type={'urgent'}
-              html={getLatestNotification()}
-            /> */}
           </ul>
           <button
             onClick={handleClose}

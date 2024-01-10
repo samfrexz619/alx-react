@@ -20,21 +20,18 @@ const CourseList = ({listCourses}) => {
         />
       </thead>
       <tbody>
-        <CourseListRow 
-          textFirstCell="ES6" 
-          textSecondCell="60" 
-          isHeader={false}  
-        />
-        <CourseListRow 
-          textFirstCell="Webpack" 
-          textSecondCell="20" 
-          isHeader={false}  
-        />
-        <CourseListRow 
-          textFirstCell="React" 
-          textSecondCell="40" 
-          isHeader={false}  
-        />
+        {
+          listCourses.length > 0 
+          ? listCourses.map(listCourse => (
+            <CourseListRow 
+              key={listCourse.id}
+              textFirstCell={listCourse.name} 
+              textSecondCell={listCourse.credit} 
+              isHeader={false}  
+            />
+          ))
+          : <CourseListRow textFirstCell="No course available yet" />
+        }
       </tbody>
     </table>
   );

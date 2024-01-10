@@ -1,6 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
+
 const NotificationItem = ({type, html, value}) => {
   return (
     <>
@@ -16,8 +17,8 @@ NotificationItem.defaultProps = {
 
 NotificationItem.propTypes = {
   type: PropTypes.string.isRequired,
-  html: PropTypes.shape({
-    __html: PropTypes.string,
+  __html: PropTypes.shape({
+    html: PropTypes.string,
   }),
   value: PropTypes.string
 }
