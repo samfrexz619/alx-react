@@ -17,7 +17,7 @@ const Notifications = () => {
       <ul>
         <NotificationItem 
           value={'New course available'}
-          type={'default'}
+          type={'urgent'}
         />
         <NotificationItem 
           value={'New resume available'}
