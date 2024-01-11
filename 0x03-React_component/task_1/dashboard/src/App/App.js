@@ -17,14 +17,26 @@ class App extends React.Component {
   ];
 
   listNotifications = [
-    { id: 1, type: 'default', value: 'New course available',},
+    {id: 1, type: 'default', value: 'New course available',},
     {id: 2, type: 'urgent', value: 'New resume available',},
     {id: 3, type: 'urgent', html: getLatestNotification(),},
  ];
 
  componentDidMount() {
-  console.log('men mount');
+  window.addEventListener('keydown', this.handleKeyBoard)
  }
+
+ componentWillUnmount() {
+  window.removeEventListener('keydown', this.handleKeyBoard)
+ }
+
+ handleKeyBoard = (e) => {
+  if(e.ctrlKey && e.key === 'h'){
+    alert('Logging you out')
+    this.props.logout()
+  }
+ }
+
 
   render() {
     return(
@@ -35,11 +47,15 @@ class App extends React.Component {
           </div>
           <Header />
           <div className="App-body">
-            {this.props.isLoggedIn ? <CourseList listCourses={this.listCourses} /> : <Login  />}
+            {
+              this.props.isLoggedIn 
+              ? <CourseList listCourses={this.listCourses} /> 
+              : <Login  />
+            }
           </div>
           <Footer  />
         </div>
-     </React.Fragment>
+      </React.Fragment>
     );
   }
 };

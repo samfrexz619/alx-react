@@ -1,6 +1,6 @@
 /** @jest-environment jsdom */
 import React from 'react'
-import { shallow } from 'enzyme'
+import { shallow, mount } from 'enzyme'
 import App from './App.js'
 import Login from '../Login/Login.js'
 import CourseList from '../CourseList/CourseList.js'
@@ -73,5 +73,18 @@ describe('<App  />', () => {
     const wrapper = shallow(<App  />)
     const notif = wrapper.find(Footer)
     expect(notif.exists()).toBe(true)
+  })
+})
+
+describe('', () => {
+  it('calls logout funct', () => {
+
+    const mockLogout = jest.fn()
+    const alertSpy = jest.spyOn(global, 'alert')
+    const wrapper = mount(<App logout={mockLogout} />)
+    wrapper.simulate('keydown', { key: 'h', ctrlKey: true });
+    expect(mockLogout).toHaveBeenCalled();
+    expect(alertSpy).toHaveBeenCalledWith('Logging you out');
+    alertSpy.mockRestore();
   })
 })
