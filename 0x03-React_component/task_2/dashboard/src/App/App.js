@@ -11,7 +11,6 @@ import './App.css'
 class App extends React.Component {
   constructor(props) {
     super(props);
-
     this.handleKeyBoard = this.handleKeyBoard.bind(this);
   }
 
