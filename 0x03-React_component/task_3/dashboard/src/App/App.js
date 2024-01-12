@@ -6,7 +6,9 @@ import Login from "../Login/Login";
 import Notification from '../Notifications/Notifications'
 import CourseList from "../CourseList/CourseList";
 import { getLatestNotification } from "../utils/utils";
+import BodySectionWithMarginBottom from "../BodySection/BodySectionWithMarginBottom";
 import './App.css'
+import BodySection from "../BodySection/BodySection";
 
 class App extends React.Component {
   constructor(props) {
@@ -52,9 +54,16 @@ class App extends React.Component {
           <div className="App-body">
             {
               this.props.isLoggedIn 
-              ? <CourseList listCourses={this.listCourses} /> 
-              : <Login  />
+              ? (<BodySectionWithMarginBottom title='Course list'>
+                  <CourseList listCourses={this.listCourses} /> 
+                </BodySectionWithMarginBottom> )
+              : (<BodySectionWithMarginBottom title='Log in to continue'>
+                  <Login  />
+                </BodySectionWithMarginBottom>)
             }
+            <BodySection  title='News from the School'>
+              <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Aliquam magnam rem nostrum saepe quas eos soluta aperiam! Recusandae dignissimos impedit accusamus, quis assumenda asperiores id molestiae, consequuntur tempora minima dolorum.</p>
+            </BodySection>
           </div>
           <Footer  />
         </div>
