@@ -9,6 +9,11 @@ import { getLatestNotification } from "../utils/utils";
 import './App.css'
 
 class App extends React.Component {
+  constructor(props) {
+    super(props);
+
+    this.handleKeyBoard = this.handleKeyBoard.bind(this);
+  }
 
   listCourses = [
     {id: 1, name: 'ES6', credit: '60',},
@@ -33,8 +38,7 @@ class App extends React.Component {
  handleKeyBoard = (e) => {
   if(e.ctrlKey && e.key === 'h'){
     alert('Logging you out')
-    console.log('logging you out');
-    this.props.logout()
+    this.props.logOut()
   }
  }
 
@@ -62,12 +66,14 @@ class App extends React.Component {
 
 App.defaultProps = {
   isLoggedIn: false,
-  logout: () => {},
+  logOut: () => {
+    return
+  },
 };
 
 App.propTypes = {
   isLoggedIn: PropTypes.bool,
-  logout: PropTypes.func,
+  logOut: PropTypes.func,
 };
 
 export default App;
