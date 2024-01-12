@@ -17,6 +17,6 @@ class BodySection extends React.Component {
 
 BodySection.propTypes = {
   title: Proptypes.string,
-  children: Proptypes.oneOf([Proptypes.string, Proptypes.element])
+  children: Proptypes.oneOfType([Proptypes.string, Proptypes.element])
 }
 export default BodySection;
