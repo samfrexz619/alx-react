@@ -1,6 +1,6 @@
 /** @jest-environment jsdom */
 import React from 'react'
-import { shallow } from 'enzyme'
+import { mount, shallow } from 'enzyme'
 import Notifications from './Notifications.js'
 import NotificationItem from './NotificationItem.js'
 import { getLatestNotification } from '../utils/utils.js'
@@ -93,6 +93,17 @@ describe('Notification component', ()=> {
 
     expect(falseText.html()).toEqual('<h4>No new notification for now</h4>')
   })
-  
+})
 
+describe('log function', () => {
+  it('should mockup the console.log function', ()=> {
+    const spy = jest.spyOn(console, 'log').mockImplementation()
+    const wrapper = mount(<Notifications  />)
+    wrapper.instance().markAsRead = spy;
+    wrapper.instance().markAsRead(1);
+    expect(wrapper.instance().markAsRead).toBeCalledWith(1);
+    expect(spy).toBeCalledTimes(1);
+    expect(spy).toBeCalledWith(1);
+    spy.mockRestore();
+  })
 })

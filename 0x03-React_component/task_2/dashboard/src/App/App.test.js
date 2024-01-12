@@ -93,7 +93,7 @@ describe('check logout fuction', () => {
     const event = new KeyboardEvent("keydown", { ctrlKey: true, key: "h" });
     window.dispatchEvent(event);
 
-    expect(mocked).toHaveBeenCalledTimes(1);
+    expect(mocked).toHaveBeenCalledTimes(1); 
     wrapper.unmount();
   });
 })

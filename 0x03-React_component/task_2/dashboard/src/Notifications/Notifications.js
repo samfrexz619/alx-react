@@ -9,10 +9,16 @@ import './Notifications.css'
 class Notifications extends React.Component {
   constructor(props){
     super(props)
+
+    this.markAsRead = this.markAsRead.bind(this);
   }
 
   handleClose =()=> {
     console.log('Close button has been clicked');
+  }
+
+  markAsRead = (id) => {
+    console.log(`Notification ${id} has been marked as read`)
   }
 
   render() {
@@ -39,6 +45,8 @@ class Notifications extends React.Component {
                     value={value}
                     type={type}
                     html={html}
+                    markAsRead={this.markAsRead}
+                    id={id}
                   />
                 ))
               }
@@ -63,7 +71,7 @@ class Notifications extends React.Component {
 };
 
 Notifications.defaultProps = {
-  displayDrawer: false,
+  displayDrawer: true,
   listNotifications: []
 }
 
