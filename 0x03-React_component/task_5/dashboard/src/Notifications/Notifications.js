@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { Component } from 'react'
 import Proptypes from 'prop-types'
 import close from '../assets/close-icon.png'
 import NotificationItem from './NotificationItem.js';
@@ -6,11 +6,15 @@ import NotificationItemShape from './NotificationItemShape.js';
 import './Notifications.css'
 
 
-class Notifications extends React.Component {
+class Notifications extends Component {
   constructor(props){
     super(props)
 
     this.markAsRead = this.markAsRead.bind(this);
+  }
+
+  shouldComponentUpdate(nextProps) {
+    return nextProps.length > this.props.listNotifications.length;
   }
 
   handleClose =()=> {
