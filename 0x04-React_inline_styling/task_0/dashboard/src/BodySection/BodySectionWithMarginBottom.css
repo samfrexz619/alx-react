@@ -1,3 +1,8 @@
 .bodySectionWithMargin {
   margin-bottom: 40px;
 }
+
+.title {
+  text-align: center;
+  padding: 6px;
+}

@@ -19,6 +19,6 @@
   margin: 0 auto;
   border-top: 3px solid #DF354B;
   border-bottom: 3px solid #DF354B;
-  height: 45vh;
+  min-height: 50vh;
   padding: 40px 15px;
 }

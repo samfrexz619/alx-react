@@ -8,7 +8,7 @@ class BodySection extends React.Component {
     const { title, children } = this.props
     return(
       <div className='bodySection'>
-        <h2>{ title }</h2>
+        <h2 className='title'>{ title }</h2>
         { children }
       </div>
     )

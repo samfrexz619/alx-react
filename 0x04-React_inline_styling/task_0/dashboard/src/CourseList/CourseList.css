@@ -1,14 +1,11 @@
+.table {
+  border: 1px solid lightgray;
+  padding: 10px;
+}
+
 #CourseList table, thead, th {
   border-collapse: collapse;
   width: 100%;
+  text-align: left;
 }
 
-
-#CourseList tbody {
-  border: 1px solid lightgray;
-  
-}
-
-#CourseList tr {
-  border-bottom: 1px solid lightgray;
-}
