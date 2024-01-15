@@ -1,5 +1,6 @@
 import React from "react";
 import PropTypes from 'prop-types';
+import { StyleSheet, css } from 'aphrodite';
 import Header from "../Header/Header";
 import Footer from "../Footer/Footer";
 import Login from "../Login/Login";
@@ -7,8 +8,8 @@ import Notification from '../Notifications/Notifications'
 import CourseList from "../CourseList/CourseList";
 import { getLatestNotification } from "../utils/utils";
 import BodySectionWithMarginBottom from "../BodySection/BodySectionWithMarginBottom";
-import './App.css'
 import BodySection from "../BodySection/BodySection";
+
 
 class App extends React.Component {
   constructor(props) {
@@ -43,15 +44,16 @@ class App extends React.Component {
   }
  }
 
+
   render() {
     return(
       <React.Fragment>
-        <div className="App">
-          <div className="App-notif">
+        <div className={css(styles.App)}>
+          <div className={css(styles.AppNotif)}>
             <Notification listNotifications={this.listNotifications} />
           </div>
           <Header />
-          <div className="App-body">
+          <div className={css(styles.AppBody)}>
             {
               this.props.isLoggedIn 
               ? (<BodySectionWithMarginBottom title='Course list'>
@@ -72,11 +74,33 @@ class App extends React.Component {
   }
 };
 
+const styles = StyleSheet.create({
+  App: {
+    position: 'relative',
+    boxSizing: 'border-box',
+    padding: 0,
+    margin: 0,
+    background: '#fff'
+  },
+  AppBody: {
+    width: '95%',
+    margin: '0 auto',
+    borderTop: '3px solid #DF354B',
+    borderBottom: '3px solid #DF354B',
+    minHeight: '50vh',
+    padding: '40px 15px'
+  },
+  AppNotif: {
+    position: 'absolute',
+    right: '20px'
+  }
+})
+
 App.defaultProps = {
   isLoggedIn: true,
   logOut: () => {
     return
-},
+  },
 };
 
 App.propTypes = {
