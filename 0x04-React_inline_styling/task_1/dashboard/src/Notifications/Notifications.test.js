@@ -4,6 +4,7 @@ import { mount, shallow } from 'enzyme'
 import Notifications from './Notifications.js'
 import NotificationItem from './NotificationItem.js'
 import { getLatestNotification } from '../utils/utils.js'
+import { StyleSheetTestUtils } from "aphrodite";
 
 
 beforeEach(() => {
