@@ -9,7 +9,9 @@ const CourseListRow = ({ isHeader, textFirstCell, textSecondCell}) => {
   }
 
   const headerStyle = {
-    backgroundColor: '#deb5b545'
+    backgroundColor: '#deb5b545',
+    width: '100%',
+    textAlign: 'left',
   }
 
   return (

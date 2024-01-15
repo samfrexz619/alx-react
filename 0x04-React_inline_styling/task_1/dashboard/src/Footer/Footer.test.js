@@ -3,6 +3,14 @@ import React from "react";
 import { shallow } from "enzyme";
 import Footer from './Footer'
 
+
+beforeEach(() => {
+  StyleSheetTestUtils.suppressStyleInjection();
+});
+afterEach(() => {
+  StyleSheetTestUtils.clearBufferAndResumeStyleInjection();
+});
+
 describe('<Footer  />', ()=> {
   it('should render Footer component without crashing', () => {
     const wrapper = shallow(<Footer />)

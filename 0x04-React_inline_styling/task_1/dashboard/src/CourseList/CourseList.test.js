@@ -5,6 +5,14 @@ import CourseList from './CourseList';
 import CourseListRow from './CourseListRow';
 
 
+
+beforeEach(() => {
+  StyleSheetTestUtils.suppressStyleInjection();
+});
+afterEach(() => {
+  StyleSheetTestUtils.clearBufferAndResumeStyleInjection();
+});
+
 describe('<CorseList  />', () => {
   const listCourses = [
     {

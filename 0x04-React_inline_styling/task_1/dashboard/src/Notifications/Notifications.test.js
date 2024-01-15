@@ -6,6 +6,13 @@ import NotificationItem from './NotificationItem.js'
 import { getLatestNotification } from '../utils/utils.js'
 
 
+beforeEach(() => {
+  StyleSheetTestUtils.suppressStyleInjection();
+});
+afterEach(() => {
+  StyleSheetTestUtils.clearBufferAndResumeStyleInjection();
+});
+
 describe('Notification component', ()=> {
 
   const arr = [];

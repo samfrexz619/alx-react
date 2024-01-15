@@ -9,6 +9,14 @@ import Header from '../Header/Header.js'
 import Footer from '../Footer/Footer.js'
 
 
+
+beforeEach(() => {
+  StyleSheetTestUtils.suppressStyleInjection();
+});
+afterEach(() => {
+  StyleSheetTestUtils.clearBufferAndResumeStyleInjection();
+});
+
 describe('<App  />', () => {
 
   const listCourses = [

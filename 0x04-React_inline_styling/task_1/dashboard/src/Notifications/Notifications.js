@@ -1,5 +1,6 @@
 import React, { Component } from 'react'
 import Proptypes from 'prop-types'
+import { StyleSheet, css } from 'aphrodite';
 import close from '../assets/close-icon.png'
 import NotificationItem from './NotificationItem.js';
 import NotificationItemShape from './NotificationItemShape.js';
@@ -28,11 +29,11 @@ class Notifications extends Component {
   render() {
     return (
       <>
-        <div className="menuItem">
+        <div className={css(styles.menuItem)}>
           <p>Your Notifiations</p>
         </div>
         { this.props.displayDrawer && 
-          <div className='Notifications'>
+          <div className={css(styles.Notifications)}>
             <h4>
               {
                 this.props.listNotifications.length > 0
@@ -73,6 +74,29 @@ class Notifications extends Component {
     )
   }
 };
+
+const styles = StyleSheet.create({
+  menuItem: {
+    width: '100%,',
+    display: 'flex',
+    justifyContent: 'flex-end',
+    padding: '15px 3px',
+    margin: '0 auto',
+  },
+  Notifications: {
+    width: '400px',
+    padding: '10px 20px',
+    border: '1px dashed #DF354B',
+    position: 'relative',
+    height: '130px',
+    display: 'flex',
+    flexDirection: 'column',
+    justifyContent: 'center',
+  },
+  space: {
+    paddingLeft: '35px'
+  }
+})
 
 Notifications.defaultProps = {
   displayDrawer: true,

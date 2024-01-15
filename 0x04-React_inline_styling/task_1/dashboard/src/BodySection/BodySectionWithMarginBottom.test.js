@@ -4,6 +4,12 @@ import { shallow } from 'enzyme'
 import BodySectionWithMarginBottom from './BodySectionWithMarginBottom'
 import BodySection from './BodySection'
 
+beforeEach(() => {
+  StyleSheetTestUtils.suppressStyleInjection();
+});
+afterEach(() => {
+  StyleSheetTestUtils.clearBufferAndResumeStyleInjection();
+});
 
 describe('<BodySectionWithMarginBottom  />', () => {
   // it('should render comp correctly', () => {

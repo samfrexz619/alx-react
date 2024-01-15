@@ -4,6 +4,13 @@ import { shallow, mount } from 'enzyme'
 import NotificationItem from './NotificationItem'
 
 
+beforeEach(() => {
+  StyleSheetTestUtils.suppressStyleInjection();
+});
+afterEach(() => {
+  StyleSheetTestUtils.clearBufferAndResumeStyleInjection();
+});
+
 describe('<NotificationItem  />', () => {
   it('should render without crashing', () => {
     const wrapper = shallow(<NotificationItem />)

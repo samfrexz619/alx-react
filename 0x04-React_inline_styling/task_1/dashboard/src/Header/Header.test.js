@@ -5,6 +5,14 @@ import Header from './Header'
 import logo from '../assets/holberton-logo.jpg'
 
 
+
+beforeEach(() => {
+  StyleSheetTestUtils.suppressStyleInjection();
+});
+afterEach(() => {
+  StyleSheetTestUtils.clearBufferAndResumeStyleInjection();
+});
+
 describe('<Header  />', () => {
   it('should render Header component without crashing', () => {
     const wrapper = shallow(<Header />)

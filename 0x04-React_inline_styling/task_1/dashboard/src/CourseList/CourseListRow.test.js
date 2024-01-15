@@ -4,6 +4,13 @@ import { shallow } from 'enzyme'
 import CourseListRow from './CourseListRow';
 
 
+beforeEach(() => {
+  StyleSheetTestUtils.suppressStyleInjection();
+});
+afterEach(() => {
+  StyleSheetTestUtils.clearBufferAndResumeStyleInjection();
+});
+
 describe('<CourseList', () => {
   it('should render one cell with colspan=2', () => {
     const wrapper = shallow(<CourseListRow isHeader={true} textFirstCell="test" textSecondCell={null} />)
