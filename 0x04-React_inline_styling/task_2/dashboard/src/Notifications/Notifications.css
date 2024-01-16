@@ -1,0 +1,12 @@
+
+ul {
+  padding-left: 35px;
+}
+
+ul li[data-priority='default'] {
+  color: blue;
+}
+
+ul li[data-priority='urgent'] {
+  color: red;
+}
