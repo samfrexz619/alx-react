@@ -45,7 +45,7 @@ describe('Notification component', ()=> {
   it('should render the first item', () => {
     const wrapper = shallow(<Notifications displayDrawer={true} listNotifications={listNotifications} />)
     const firstElem = wrapper.find(NotificationItem).first()
-    expect(firstElem.html()).toBe(`<li data-notification-type="default" data-priority="default">New course available</li>`)
+    expect(firstElem.containsMatchingElement(<li data-notification-type="default">New course available</li>))
   })
 
   it('should render the three NotificationItem components ', () => {

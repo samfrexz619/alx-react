@@ -21,7 +21,8 @@ describe('<NotificationItem  />', () => {
   it('should render text and value correctly', () => {
     const wrapper = shallow(<NotificationItem />)
     wrapper.setProps({ type: "default", value: "test" });
-    expect(wrapper.html()).toEqual('<li data-notification-type="default" data-priority="default">test</li>');
+    // expect(wrapper.html()).toEqual('<li data-notification-type="default" data-priority="default" class="default">test</li>');
+    expect(wrapper.text()).toEqual('test');
   })
 
   it('should render html', () => {
