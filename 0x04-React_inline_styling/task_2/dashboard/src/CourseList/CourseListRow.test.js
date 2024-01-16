@@ -28,7 +28,9 @@ describe('<CourseList', () => {
   })
 
   it('renders correctly two td elements within a tr element', () => {
-    const wrapper = shallow(<CourseListRow isHeader={false} textFirstCell="test" textSecondCell="test" />)
+    const wrapper = shallow(
+      <CourseListRow isHeader={false} textFirstCell="test" textSecondCell="test" />
+    )
 
     const trElement = wrapper.find('tr')
 
@@ -36,8 +38,8 @@ describe('<CourseList', () => {
 
     expect(trElement.children()).toHaveLength(2)
 
-    expect(trElement.childAt(0).html()).toEqual("<td> test </td>")
+    expect(trElement.childAt(0).html()).toEqual('<td class="td_1uxrx9c"> test </td>')
 
-    expect(trElement.childAt(1).html()).toEqual("<td> test </td>")
+    expect(trElement.childAt(1).html()).toEqual('<td class="td_1uxrx9c"> test </td>')
   })
 })

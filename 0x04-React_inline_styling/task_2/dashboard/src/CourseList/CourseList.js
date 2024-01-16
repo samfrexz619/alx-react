@@ -7,8 +7,8 @@ import { CourseShape } from './CourseShape';
 
 const CourseList = ({listCourses}) => {
   return (
-    <table id='CourseList' className={css(styles.courseList)}>
-      <div className={css(styles.table)}>
+    <div className={css(styles.table)}>
+      <table id='CourseList' className={css(styles.courseList)}>
         <thead className={css(styles.courseList)}>
           <CourseListRow
             textFirstCell="Available courses"
@@ -34,8 +34,8 @@ const CourseList = ({listCourses}) => {
             : <CourseListRow textFirstCell="No course available yet" />
           }
         </tbody>
-      </div>
-    </table>
+      </table>
+    </div>
   );
 }
 
