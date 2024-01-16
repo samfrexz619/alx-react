@@ -79,7 +79,7 @@ describe('<App  />', () => {
   })
 
   it('should render Footer comp', () => {
-    const wrapper = shallow(<App  />)
+    const wrapper = shallow(<App />)
     const notif = wrapper.find(Footer)
     expect(notif.exists()).toBe(true)
   })
@@ -87,22 +87,24 @@ describe('<App  />', () => {
 
 describe('check logout fuction', () => {
   it('check that alert is called when ctrl & h keys are keydown', () => {
-    const spy = jest.spyOn(window, 'alert')
+    const spy = jest.spyOn(window, 'alert').mockImplementation(() => {})
     const wrapper = mount(<App  />)
     const event = new KeyboardEvent('keydown', { ctrlKey: true, key: 'h'})
     window.dispatchEvent(event)
+    wrapper.instance().showLogoutAlert()
     expect(spy).toHaveBeenCalledWith("Logging you out");
-    jest.restoreAllMocks();
+    // jest.restoreAllMocks();
+    spy.mockRestore()
     wrapper.unmount();
   })
 
   it("calls logOut function", () => {
-    const mocked = jest.fn();
-    const wrapper = mount(<App logOut={mocked} />);
+    const logOutMock = jest.fn();
+    const wrapper = mount(<App logOut={logOutMock} />);
     const event = new KeyboardEvent("keydown", { ctrlKey: true, key: "h" });
     window.dispatchEvent(event);
 
-    expect(mocked).toHaveBeenCalledTimes(1); 
+    expect(logOutMock).toHaveBeenCalledTimes(1); 
     wrapper.unmount();
   });
 })

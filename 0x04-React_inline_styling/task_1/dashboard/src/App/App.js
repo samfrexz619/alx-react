@@ -39,9 +39,13 @@ class App extends React.Component {
 
  handleKeyBoard = (e) => {
   if(e.ctrlKey && e.key === 'h'){
-    alert('Logging you out')
+    this.showLogoutAlert()
     this.props.logOut()
   }
+ }
+
+ showLogoutAlert =()=> {
+  alert('Logging you out')
  }
 
 
