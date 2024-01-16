@@ -29,7 +29,7 @@ class Notifications extends Component {
     return (
       <>
         <div className={css(styles.menuItem)}>
-          <p>Your Notifiations</p>
+          <p>Your Notifications</p>
         </div>
         { this.props.displayDrawer && 
           <div className={css(styles.Notifications)}>
@@ -74,13 +74,61 @@ class Notifications extends Component {
   }
 };
 
+const notifica8nFrame = {
+  'from': {
+    opacity: 0.5,
+  },
+  'to': {
+      opacity: 1,
+  },
+};
+
+const shake = {
+  '0%': {
+    transform: 'translate(1px, 1px) rotate(0deg)'
+  },
+  '10%': {
+    transform: 'translate(-1px, -2px) rotate(-1deg)'
+  },
+  '20%': {
+    transform: 'translate(-3px, 0px) rotate(1deg)'
+  },
+  '30%': {
+    transform: 'translate(3px, 2px) rotate(0deg)'
+  },
+  '40%': {
+    transform: 'translate(1px, -1px) rotate(1deg)'
+  },
+  '50%': {
+    transform: 'translate(-1px, 2px) rotate(-1deg)'
+  },
+  '60%': {
+    transform: 'translate(-3px, 1px) rotate(0deg)'
+  },
+  '70%': {
+    transform: 'translate(3px, 1px) rotate(-1deg)'
+  },
+  '80%': {
+    transform: 'translate(-1px, -1px) rotate(1deg)'
+  },
+  '90%': {
+    transform: 'translate(1px, 2px) rotate(0deg)'
+  },
+  '100%': {
+    transform: 'translate(1px, -2px) rotate(-1deg)'
+  },
+}
+
 const styles = StyleSheet.create({
   menuItem: {
     width: '100%,',
     display: 'flex',
     justifyContent: 'flex-end',
-    // padding: '15px 3px',
     margin: '0 auto',
+    animation: 'shake 0.4s',
+    animationName: [notifica8nFrame, shake],
+    animationDuration: '3s, 1200ms',
+    animationIterationCount: 'infinite',
   },
   default: {
     listStyle: 'none',
@@ -98,14 +146,14 @@ const styles = StyleSheet.create({
     background: '#fff',
     border: 'none',
     top: '20px',
-    // padding: '10px 8px',
     left: '0',
+    background: '#fff8f8',
     '@media (min-width: 900px)': {
       padding: '10px 20px',
       height: '130px',
       border: '1px dashed #DF354B',
       width: '400px',
-      background: 'none',
+      // background: 'none',
       position: 'relative',
       display: 'flex',
       flexDirection: 'column',
@@ -120,7 +168,7 @@ const styles = StyleSheet.create({
 })
 
 Notifications.defaultProps = {
-  displayDrawer: false,
+  displayDrawer: true,
   listNotifications: []
 }
 
