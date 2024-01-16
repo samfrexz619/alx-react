@@ -18,8 +18,11 @@ class BodySection extends React.Component {
 
 const styles = StyleSheet.create({
   title: {
-    textAlign: 'center',
-    padding: '6px'
+    textAlign: 'left',
+    padding: '6px',
+    '@media (min-width: 900px)': {
+      textAlign: 'center'
+    }
   }
 })
 

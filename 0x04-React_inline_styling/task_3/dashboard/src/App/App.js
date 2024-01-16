@@ -68,7 +68,10 @@ class App extends React.Component {
                 </BodySectionWithMarginBottom>)
             }
             <BodySection  title='News from the School'>
-              <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Aliquam magnam rem nostrum saepe quas eos soluta aperiam! Recusandae dignissimos impedit accusamus, quis assumenda asperiores id molestiae, consequuntur tempora minima dolorum.</p>
+              <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Aliquam magnam rem nostrum saepe quas eos soluta aperiam! Recusandae dignissimos impedit accusamus, quis assumenda asperiores id molestiae, consequuntur tempora minima dolorum.
+              Lorem ipsum dolor sit amet, consectetur adipisicing elit. Fugiat, animi quod aspernatur expedita, exercitationem explicabo aperiam delectus deserunt doloremque velit error. Veritatis iure odio, sequi cupiditate vel nostrum sint repellendus.
+              Lorem, ipsum dolor sit amet consectetur adipisicing elit. Iusto, dignissimos nisi nostrum numquam minus mollitia doloremque! Repellat asperiores a temporibus. Expedita culpa a voluptatibus, odit amet vel tempora magni voluptate?
+              </p>
             </BodySection>
           </div>
           <Footer  />
@@ -96,7 +99,10 @@ const styles = StyleSheet.create({
   },
   AppNotif: {
     position: 'absolute',
-    right: '20px'
+    right: '20px',
+    // '@media(min-width: 900px)': {
+    //   right: '20px',
+    // }
   }
 })
 

@@ -9,7 +9,7 @@ class NotificationItem extends React.PureComponent {
   }
 
   className = css(
-    this.props.type === 'default' ? styles.default : styles.urgent
+    [this.props.type === 'default' ? styles.default : styles.urgent], styles.border
   )
 
   render() {
@@ -46,6 +46,13 @@ const styles = StyleSheet.create({
   },
   urgent: {
     color: 'red'
+  },
+  border: {
+    borderBottom: '1px solid #000',
+    padding: '5px 10px',
+    '@media(min-width: 900px)': {
+      borderBottom: 'none'
+    }
   }
 })
 
