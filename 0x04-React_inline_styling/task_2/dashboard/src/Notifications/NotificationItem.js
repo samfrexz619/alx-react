@@ -1,11 +1,16 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import { StyleSheet, css } from 'aphrodite'
 
 
 class NotificationItem extends React.PureComponent {
   constructor(props){
     super(props)
   }
+
+  className = css(
+    this.props.type === 'default' ? styles.default : styles.urgent
+  )
 
   render() {
     return (
@@ -16,6 +21,7 @@ class NotificationItem extends React.PureComponent {
               onClick={() => this.props.markAsRead(this.props.id)}
               data-notification-type={this.props.type} 
               data-priority={this.props.type}
+              className={this.className}
             >
                 { this.props.value }
            </li>
@@ -26,12 +32,22 @@ class NotificationItem extends React.PureComponent {
               onClick={() => this.props.markAsRead(this.props.id)}
               dangerouslySetInnerHTML={{__html: this.props.html}} 
               data-priority={this.props.type} 
+              className={this.className}
               />
        }
       </>
     );
   }
 }
+
+const styles = StyleSheet.create({
+  default: {
+    color: 'blue'
+  },
+  urgent: {
+    color: 'red'
+  }
+})
 
 NotificationItem.defaultProps = {
   type: 'default',
