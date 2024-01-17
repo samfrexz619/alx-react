@@ -57,7 +57,7 @@ class App extends React.Component {
             <Notification listNotifications={this.listNotifications} />
           </div>
           <Header />
-          <div className={css(styles.AppBody)}>
+          <div className={css(styles.body)}>
             {
               this.props.isLoggedIn 
               ? (<BodySectionWithMarginBottom title='Course list'>
@@ -71,7 +71,9 @@ class App extends React.Component {
               <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Aliquam magnam rem nostrum saepe quas eos soluta aperiam! Recusandae dignissimos impedit accusamus, quis assumenda asperiores id molestiae, consequuntur tempora minima dolorum.</p>
             </BodySection>
           </div>
-          <Footer  />
+          <div className={css(styles.footer)}>
+            <Footer  />
+          </div>
         </div>
       </React.Fragment>
     );
@@ -86,7 +88,7 @@ const styles = StyleSheet.create({
     margin: 0,
     background: '#fff'
   },
-  AppBody: {
+  body: {
     width: '95%',
     margin: '0 auto',
     borderTop: '3px solid #DF354B',
@@ -97,6 +99,9 @@ const styles = StyleSheet.create({
   AppNotif: {
     position: 'absolute',
     right: '20px'
+  },
+  footer: {
+    width: '100%',
   }
 })
 
