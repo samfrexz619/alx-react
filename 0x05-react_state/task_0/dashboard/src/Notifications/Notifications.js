@@ -31,7 +31,7 @@ class Notifications extends Component {
   render() {
     return (
       <>
-        <div className={css(styles.menuItem)}>
+        <div className={css([styles.menuItem, !this.props.displayDrawer && styles.menuItemAnimation])}>
           <span 
             role='button'
             onClick={this.props.handleDisplayDrawer}
@@ -134,6 +134,8 @@ const styles = StyleSheet.create({
     display: 'flex',
     justifyContent: 'flex-end',
     margin: '0 auto',
+  },
+  menuItemAnimation: {
     animation: 'shake 0.4s',
     animationName: [notifica8nFrame, shake],
     animationDuration: '3s, 1200ms',

@@ -108,3 +108,22 @@ describe('check logout fuction', () => {
     wrapper.unmount();
   });
 })
+
+describe('testing App state', () => {
+  it('displayDrawer state should be false', () => {
+    const wrapper = shallow(<App  />)
+    expect(wrapper.state().displayDrawer).toBe(false)
+  })
+
+  it('should set displayDrawer to true', () => {
+		const wrapper = shallow(<App />);
+		wrapper.instance().handleDisplayDrawer();
+		expect(wrapper.state().displayDrawer).toBe(true);
+	});
+
+  it('should set displayDrawer to false', () => {
+		const wrapper = shallow(<App />);
+		wrapper.instance().handleHideDrawer();
+		expect(wrapper.state().displayDrawer).toBe(false);
+	});
+})

@@ -24,7 +24,6 @@ describe('<BodySectionWithMarginBottom  />', () => {
     
     const bodySection = wrapper.find(BodySection)
     expect(wrapper.find(BodySection).exists()).toBe(true)
-    expect(bodySection.html()).toEqual('<div class="bodySection"><h2 class="title_prcf3v">test title</h2></div>')
+    expect(bodySection.html()).toEqual('<div class="bodySection"><h2 class="title_jc2fzp">test title</h2></div>')
   })
 })
-// *785# 35416351312

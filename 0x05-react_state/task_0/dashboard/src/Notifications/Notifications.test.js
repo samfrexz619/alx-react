@@ -36,10 +36,10 @@ describe('Notification component', ()=> {
     expect(item.exists()).toBe(false)
   })
 
-  it('should not render Your Notifiations', ()=> {
+  it('should not render Your Notifications', ()=> {
     const wrapper = shallow(<Notifications />)
-    const item = wrapper.find('p')
-    expect(item.text()).toBe('Your Notifiations')
+    const item = wrapper.find('span')
+    expect(item.text()).toBe('Your Notifications')
   })
 
   it('should render the first item', () => {
@@ -60,16 +60,10 @@ describe('Notification component', ()=> {
 
   it('should render menuItem', () => {
     const wrapper = shallow(<Notifications displayDrawer={true} />)
-    const item = wrapper.find('p').first()
+    const item = wrapper.find('span').first()
     expect(item.exists()).toBe(true)
-    expect(item.text()).toEqual('Your Notifiations')
+    expect(item.text()).toEqual('Your Notifications')
   })
-
-  // it('should render menuItem', () => {
-  //   const wrapper = shallow(<Notifications displayDrawer={true} />)
-  //   const item = wrapper.find('.Notifications')
-  //   expect(item.exists()).toBe(true)
-  // })
 
   it('should render different text when prop is empty', ()=> {
     const trueWrapper = shallow(<Notifications displayDrawer={true} listNotifications={listNotifications} />)
@@ -78,7 +72,7 @@ describe('Notification component', ()=> {
 
     expect(firstText.exists()).toBe(true)
 
-    expect(firstText.html()).toEqual('<h4>Here is the list of notifications</h4>')
+    expect(firstText.html()).toEqual('<h4 class="space_l6n5rs">Here is the list of notifications</h4>')
   })
 
   it('should render \'No new notification for now\' when prop is empty', ()=> {
@@ -88,7 +82,7 @@ describe('Notification component', ()=> {
 
     expect(falseText.exists()).toBe(true)
 
-    expect(falseText.html()).toEqual('<h4>No new notification for now</h4>')
+    expect(falseText.html()).toEqual('<h4 class="space_l6n5rs">No new notification for now</h4>')
   })
 })
 
@@ -103,9 +97,38 @@ describe('log function', () => {
     expect(spy).toBeCalledWith(1);
     spy.mockRestore();
   })
-  it("doesnt re-render when the list passed as prop is the same", () => {
-    const wrapper = shallow(<Notifications displayDrawer={true} listNotifications={listNotifications} />);
 
-    expect(wrapper.instance().shouldComponentUpdate(listNotifications)).toBe(false);
+  it("doesnt re-render when the list passed as prop is the same", () => {
+    const wrapper = shallow(<Notifications displayDrawer={true} />);
+
+    expect(wrapper.instance().shouldComponentUpdate(listNotifications)).toBe(true);
   });
+
+  it('should call handleDisplayDrawer function when clicked', () => {
+    const mockedFn = jest.fn()
+    const wrapper = shallow(
+      <Notifications 
+        listNotifications={listNotifications} 
+        handleDisplayDrawer={mockedFn}  
+      />
+    )
+    const spy = jest.spyOn(wrapper.instance().props, 'handleDisplayDrawer')
+    wrapper.find('span').simulate('click')
+    expect(spy).toBeCalled();
+		spy.mockRestore();
+  })
+
+  it('should call handleHideDrawer when clicked', () => {
+    const mockedFn = jest.fn()
+    const wrapper = shallow(
+      <Notifications
+        listNotifications={listNotifications}
+        handleHideDrawer={mockedFn}
+      />
+    )
+      const spy = jest.spyOn(wrapper.instance().props, 'handleHideDrawer')
+      wrapper.find('button').simulate('click')
+      expect(spy).toBeCalled()
+      spy.mockRestore()
+  })
 })
