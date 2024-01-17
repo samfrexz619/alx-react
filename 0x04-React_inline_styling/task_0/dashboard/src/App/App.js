@@ -38,9 +38,13 @@ class App extends React.Component {
 
  handleKeyBoard = (e) => {
   if(e.ctrlKey && e.key === 'h'){
-    alert('Logging you out')
+    this.showLogoutAlert()
     this.props.logOut()
   }
+ }
+
+ showLogoutAlert =()=> {
+  alert('Logging you out')
  }
 
   render() {
@@ -65,7 +69,7 @@ class App extends React.Component {
               <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Aliquam magnam rem nostrum saepe quas eos soluta aperiam! Recusandae dignissimos impedit accusamus, quis assumenda asperiores id molestiae, consequuntur tempora minima dolorum.</p>
             </BodySection>
           </div>
-          <Footer  />
+          <Footer />
         </div>
       </React.Fragment>
     );
@@ -73,7 +77,7 @@ class App extends React.Component {
 };
 
 App.defaultProps = {
-  isLoggedIn: true,
+  isLoggedIn: false,
   logOut: () => {
     return
 },

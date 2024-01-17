@@ -71,7 +71,7 @@ describe('<App  />', () => {
 
   it('should render Footer comp', () => {
     const wrapper = shallow(<App  />)
-    const notif = wrapper.find(Footer)
+    const notif = wrapper.find(Footer) 
     expect(notif.exists()).toBe(true)
   })
 })
