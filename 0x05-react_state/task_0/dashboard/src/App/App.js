@@ -14,7 +14,24 @@ import BodySection from "../BodySection/BodySection";
 class App extends React.Component {
   constructor(props) {
     super(props);
+    this.state = {
+      displayDrawer: false
+    }
     this.handleKeyBoard = this.handleKeyBoard.bind(this);
+    this.handleDisplayDrawer = this.handleDisplayDrawer.bind(this)
+    this.handleHideDrawer = this.handleHideDrawer.bind(this)
+  }
+  
+  handleDisplayDrawer = () => {
+    this.setState({
+      displayDrawer: true
+    })
+  }
+
+  handleHideDrawer = () => {
+    this.setState({
+      displayDrawer: false
+    })
   }
 
   listCourses = [
@@ -54,7 +71,12 @@ class App extends React.Component {
       <React.Fragment>
         <div className={css(styles.App)}>
           <div className={css(styles.AppNotif)}>
-            <Notification listNotifications={this.listNotifications} />
+            <Notification 
+              displayDrawer={this.state.displayDrawer}
+              listNotifications={this.listNotifications} 
+              handleDisplayDrawer={this.handleDisplayDrawer}
+              handleHideDrawer={this.handleHideDrawer}
+            />
           </div>
           <Header />
           <div className={css(styles.AppBody)}>

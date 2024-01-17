@@ -14,7 +14,10 @@ class Notifications extends Component {
   }
 
   shouldComponentUpdate(nextProps) {
-    return nextProps.length > this.props.listNotifications.length;
+    return (
+        nextProps.length > this.props.listNotifications.length 
+        || nextProps.displayDrawer !== this.props.displayDrawer
+      );
   }
 
   handleClose =()=> {
@@ -29,7 +32,13 @@ class Notifications extends Component {
     return (
       <>
         <div className={css(styles.menuItem)}>
-          <p>Your Notifications</p>
+          <span 
+            role='button'
+            onClick={this.props.handleDisplayDrawer}
+            className={css(styles.btn)}
+          >
+            Your Notifications
+          </span>
         </div>
         { this.props.displayDrawer && 
           <div className={css(styles.Notifications)}>
@@ -56,7 +65,7 @@ class Notifications extends Component {
               }
             </ul>
             <button
-              onClick={this.handleClose}
+              onClick={this.props.handleHideDrawer}
               style={{
                 border: 'none',
                 position: 'absolute',
@@ -164,6 +173,9 @@ const styles = StyleSheet.create({
   },
   space: {
     padding: '0',
+  },
+  btn: {
+    cursor: 'pointer',
   }
 })
 
@@ -174,7 +186,9 @@ Notifications.defaultProps = {
 
 Notifications.proptypes = {
   displayDrawer: Proptypes.bool,
-  listNotifications: Proptypes.arrayOf(NotificationItemShape)
+  listNotifications: Proptypes.arrayOf(NotificationItemShape),
+  handleDisplayDrawer: Proptypes.func,
+  handleHideDrawer: Proptypes.func
 }
 
 export default Notifications;
