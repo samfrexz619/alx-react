@@ -1,85 +1,109 @@
-import React, { useState, useEffect } from 'react';
+import React from 'react';
 import { StyleSheet, css } from 'aphrodite';
 
 
-const Login = () => {
+class Login extends React.Component {
+  constructor(props) {
+    super(props)
+  
+    this.state = {
+       isLoggedIn: false,
+       email: '',
+       password: '',
+       enableSubmit: false
+    }
 
-  const [isLoggedIn, setIsLoggedIn] = useState(false)
-  const [email, setEmail] = useState('')
-  const [password, setPassword] = useState('')
-  const [enableSubmit, setEnableSubmit] = useState(false)
+    // this.handleEmailChange = this.handleEmailChange.bind(this);
+    // this.handlePasswordChange = this.handlePasswordChange.bind(this);
+  }
 
-  const handleLoginSubmit = async(e) => {
+  handleChangeEmail = (e) => {
+    this.setState({
+      email: e.target.value
+    })
+  }
+
+  handleChangePassword = (e) => {
+    this.setState({
+      password: e.target.value
+    })
+  }
+
+  handleLoginSubmit = async(e) => {
     e.preventDefault();
     try {
-      setIsLoggedIn(true)
+      this.setState({
+        isLoggedIn: true
+      })
       const data = {
-        email,
-        password
+        email: this.state.email,
+        password: this.state.password
       }
       console.log(data);
     } catch(err){
       console.log(err)
     } finally {
       // clear input after submitting
-      setEnableSubmit(false)
-      setEmail('')
-      setPassword('')
+      this.setState({
+        enableSubmit: false,
+        email: '',
+        password: ''
+      })
     }
   }
 
-  const handleChangeEmail = (e) => {
-    setEmail(e.target.value)
-  }
+  componentDidUpdate(prevProps, prevState) {
+    const { email, password, enableSubmit } = this.state;
 
-  const handleChangePassword = (e) => {
-    setPassword(e.target.value)
-  }
-
-  useEffect(()=> {
-    if(email !== '' && password !== ''){
-      setEnableSubmit(true)
+    if (email !== '' && password !== '') {
+      if (!enableSubmit) {
+        this.setState({ enableSubmit: true });
+      }
     } else {
-      if(!enableSubmit){
-        setEnableSubmit(false)
+      if (enableSubmit) {
+        this.setState({ enableSubmit: false });
       }
     }
-  },[email, password])
+  }
 
-  return (
-    <form onSubmit={handleLoginSubmit} className={css(styles.login)}>
-        <p>Login to access the full dashboard</p>
-      <div className={css(styles.medium)}>
-        <div className={css(styles.label)}>
-          <label htmlFor="mail">Email:</label>
+  render() {
+    return (
+      <form onSubmit={this.handleLoginSubmit} className={css(styles.login)}>
+          <p>Login to access the full dashboard</p>
+        <div className={css(styles.medium)}>
+          <div className={css(styles.label)}>
+            <label htmlFor="mail">Email:</label>
+            <input 
+              type="email" 
+              name="mail" 
+              id="mail" 
+              value={this.state.email}
+              onChange={this.handleChangeEmail}
+            />
+          </div>
+          <div className={css(styles.label)}>
+            <label htmlFor="psswd">Password:</label>
+            <input 
+              type="password" 
+              name="psswd" 
+              id="psswd" 
+              value={this.state.password}
+              onChange={this.handleChangePassword}
+            />
+          </div>
           <input 
-            type="email" 
-            name="mail" 
-            id="mail" 
-            value={email}
-            onChange={handleChangeEmail}
+            type="submit" 
+            disabled={!this.state.enableSubmit} 
+            value={'OK'} 
+            className={css(styles.btn, !this.state.enableSubmit && styles.disabledBtn)} 
           />
         </div>
-        <div className={css(styles.label)}>
-          <label htmlFor="psswd">Password:</label>
-          <input 
-            type="password" 
-            name="psswd" 
-            id="psswd" 
-            value={password}
-            onChange={handleChangePassword}
-          />
-        </div>
-        <input 
-          type="submit" 
-          disabled={!enableSubmit} 
-          value={'OK'} 
-          className={css(styles.btn, !enableSubmit && styles.disabledBtn)} 
-        />
-      </div>
-    </form>
-  );
+      </form>
+    );
+  }
+  
 }
+
 
 const styles = StyleSheet.create({
   login: {
