@@ -183,7 +183,9 @@ const styles = StyleSheet.create({
 
 Notifications.defaultProps = {
   displayDrawer: true,
-  listNotifications: []
+  listNotifications: [],
+  handleHideDrawer: ()=> {},
+  handleDisplayDrawer: () => {},
 }
 
 Notifications.proptypes = {
