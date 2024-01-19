@@ -39,6 +39,7 @@ class Login extends React.Component {
         email: this.state.email,
         password: this.state.password
       }
+      // this.props.logIn(data)
       console.log(data);
     } catch(err){
       console.log(err)
@@ -52,7 +53,7 @@ class Login extends React.Component {
     }
   }
 
-  componentDidUpdate(prevProps, prevState) {
+  componentDidUpdate() {
     const { email, password, enableSubmit } = this.state;
 
     if (email !== '' && password !== '') {
@@ -67,6 +68,7 @@ class Login extends React.Component {
   }
 
   render() {
+    const {email, password, enableSubmit} = this.state
     return (
       <form onSubmit={this.handleLoginSubmit} className={css(styles.login)}>
           <p>Login to access the full dashboard</p>
@@ -77,7 +79,7 @@ class Login extends React.Component {
               type="email" 
               name="mail" 
               id="mail" 
-              value={this.state.email}
+              value={email}
               onChange={this.handleChangeEmail}
             />
           </div>
@@ -87,15 +89,15 @@ class Login extends React.Component {
               type="password" 
               name="psswd" 
               id="psswd" 
-              value={this.state.password}
+              value={password}
               onChange={this.handleChangePassword}
             />
           </div>
           <input 
             type="submit" 
-            disabled={!this.state.enableSubmit} 
+            disabled={!enableSubmit} 
             value={'OK'} 
-            className={css(styles.btn, !this.state.enableSubmit && styles.disabledBtn)} 
+            className={css(styles.btn, !enableSubmit && styles.disabledBtn)} 
           />
         </div>
       </form>
