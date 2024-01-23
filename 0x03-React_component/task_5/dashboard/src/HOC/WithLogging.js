@@ -3,7 +3,7 @@ import React from 'react';
 const WithLogging = ({WrappedComponent}) => {
   const getDisplayName = ()=> WrappedComponent.displayName || WrappedComponent.name || "Component";
 
-  WithLogging.displayName = `WithLogging(${getDisplayName(WrappedComponent)})`;
+  WithLogging.displayName = `WithLogging(${getDisplayName})`;
 
   return class extends React.Component {
     componentDidMount() {

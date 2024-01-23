@@ -1,5 +1,4 @@
 import React from "react";
-import PropTypes from 'prop-types';
 import { StyleSheet, css } from 'aphrodite';
 import Header from "../Header/Header";
 import Footer from "../Footer/Footer";
@@ -9,17 +8,51 @@ import CourseList from "../CourseList/CourseList";
 import { getLatestNotification } from "../utils/utils";
 import BodySectionWithMarginBottom from "../BodySection/BodySectionWithMarginBottom";
 import BodySection from "../BodySection/BodySection";
-
+import { user, AppContext } from "./AppContext";
 
 class App extends React.Component {
   constructor(props) {
     super(props);
+
     this.state = {
-      displayDrawer: false
+      displayDrawer: false,
+      user,
+      logOut: this.logOut
     }
+
+    this.logOut = this.logOut.bind(this)
+    this.logIn = this.logIn.bind(this)
     this.handleKeyBoard = this.handleKeyBoard.bind(this);
     this.handleDisplayDrawer = this.handleDisplayDrawer.bind(this)
     this.handleHideDrawer = this.handleHideDrawer.bind(this)
+
+    this.listCourses = [
+      {id: 1, name: 'ES6', credit: '60',},
+      {id: 2, name: 'Webpack', credit: '20',},
+      {id: 3,name: 'React', credit: '40',},
+    ];
+  
+    this.listNotifications = [
+      {id: 1, type: 'default', value: 'New course available',},
+      {id: 2, type: 'urgent', value: 'New resume available',},
+      {id: 3, type: 'urgent', html: getLatestNotification(),},
+   ];
+  }
+
+  logIn =(email, password)=> {
+    this.setState({
+      user: {
+        email,
+        password,
+        isLoggedIn: true
+      }
+    })
+  }
+
+  logOut =()=> {
+    this.setState({
+      user: user
+    })
   }
   
   handleDisplayDrawer = () => {
@@ -34,17 +67,6 @@ class App extends React.Component {
     })
   }
 
-  listCourses = [
-    {id: 1, name: 'ES6', credit: '60',},
-    {id: 2, name: 'Webpack', credit: '20',},
-    {id: 3,name: 'React', credit: '40',},
-  ];
-
-  listNotifications = [
-    {id: 1, type: 'default', value: 'New course available',},
-    {id: 2, type: 'urgent', value: 'New resume available',},
-    {id: 3, type: 'urgent', html: getLatestNotification(),},
- ];
 
  componentDidMount() {
   window.addEventListener('keydown', this.handleKeyBoard)
@@ -68,37 +90,42 @@ class App extends React.Component {
 
   render() {
     return(
-      <React.Fragment>
-        <div className={css(styles.App)}>
-          <div className={css(styles.AppNotif)}>
-            <Notification 
-              displayDrawer={this.state.displayDrawer}
-              listNotifications={this.listNotifications} 
-              handleDisplayDrawer={this.handleDisplayDrawer}
-              handleHideDrawer={this.handleHideDrawer}
-            />
+      <AppContext.Provider value={{
+        user: this.state.user,
+        logOut: this.state.logOut
+      }}>
+        <React.Fragment>
+          <div className={css(styles.App)}>
+            <div className={css(styles.AppNotif)}>
+              <Notification
+                displayDrawer={this.state.displayDrawer}
+                listNotifications={this.listNotifications}
+                handleDisplayDrawer={this.handleDisplayDrawer}
+                handleHideDrawer={this.handleHideDrawer}
+              />
+            </div>
+            <Header />
+            <div className={css(styles.AppBody)}>
+              {
+                this.state.user.isLoggedIn
+                ? (<BodySectionWithMarginBottom title='Course list'>
+                    <CourseList listCourses={this.listCourses} />
+                  </BodySectionWithMarginBottom> )
+                : (<BodySectionWithMarginBottom title='Log in to continue'>
+                    <Login logIn={this.logIn} />
+                  </BodySectionWithMarginBottom>)
+              }
+              <BodySection  title='News from the School'>
+                <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Aliquam magnam rem nostrum saepe quas eos soluta aperiam! Recusandae dignissimos impedit accusamus, quis assumenda asperiores id molestiae, consequuntur tempora minima dolorum.
+                Lorem ipsum dolor sit amet, consectetur adipisicing elit. Fugiat, animi quod aspernatur expedita, exercitationem explicabo aperiam delectus deserunt doloremque velit error. Veritatis iure odio, sequi cupiditate vel nostrum sint repellendus.
+                Lorem, ipsum dolor sit amet consectetur adipisicing elit. Iusto, dignissimos nisi nostrum numquam minus mollitia doloremque! Repellat asperiores a temporibus. Expedita culpa a voluptatibus, odit amet vel tempora magni voluptate?
+                </p>
+              </BodySection>
+            </div>
+            <Footer  />
           </div>
-          <Header />
-          <div className={css(styles.AppBody)}>
-            {
-              this.props.isLoggedIn 
-              ? (<BodySectionWithMarginBottom title='Course list'>
-                  <CourseList listCourses={this.listCourses} /> 
-                </BodySectionWithMarginBottom> )
-              : (<BodySectionWithMarginBottom title='Log in to continue'>
-                  <Login  />
-                </BodySectionWithMarginBottom>)
-            }
-            <BodySection  title='News from the School'>
-              <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Aliquam magnam rem nostrum saepe quas eos soluta aperiam! Recusandae dignissimos impedit accusamus, quis assumenda asperiores id molestiae, consequuntur tempora minima dolorum.
-              Lorem ipsum dolor sit amet, consectetur adipisicing elit. Fugiat, animi quod aspernatur expedita, exercitationem explicabo aperiam delectus deserunt doloremque velit error. Veritatis iure odio, sequi cupiditate vel nostrum sint repellendus.
-              Lorem, ipsum dolor sit amet consectetur adipisicing elit. Iusto, dignissimos nisi nostrum numquam minus mollitia doloremque! Repellat asperiores a temporibus. Expedita culpa a voluptatibus, odit amet vel tempora magni voluptate?
-              </p>
-            </BodySection>
-          </div>
-          <Footer  />
-        </div>
-      </React.Fragment>
+        </React.Fragment>
+      </AppContext.Provider>
     );
   }
 };
@@ -128,16 +155,16 @@ const styles = StyleSheet.create({
   }
 })
 
-App.defaultProps = {
-  isLoggedIn: false,
-  logOut: () => {
-    return
-  },
-};
+// App.defaultProps = {
+//   isLoggedIn: false,
+//   logOut: () => {
+//     return
+//   },
+// };
 
-App.propTypes = {
-  isLoggedIn: PropTypes.bool,
-  logOut: PropTypes.func,
-};
+// App.propTypes = {
+//   isLoggedIn: PropTypes.bool,
+//   logOut: PropTypes.func,
+// };
 
 export default App;

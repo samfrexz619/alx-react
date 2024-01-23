@@ -1,13 +1,13 @@
 import React from 'react';
 import { StyleSheet, css } from 'aphrodite';
-
+import PropTypes from 'prop-types'
 
 class Login extends React.Component {
   constructor(props) {
     super(props)
   
     this.state = {
-       isLoggedIn: false,
+      //  isLoggedIn: false,
        email: '',
        password: '',
        enableSubmit: false
@@ -31,26 +31,12 @@ class Login extends React.Component {
 
   handleLoginSubmit = async(e) => {
     e.preventDefault();
-    try {
-      this.setState({
-        isLoggedIn: true
-      })
-      const data = {
-        email: this.state.email,
-        password: this.state.password
-      }
-      // this.props.logIn(data)
-      console.log(data);
-    } catch(err){
-      console.log(err)
-    } finally {
-      // clear input after submitting
-      this.setState({
-        enableSubmit: false,
-        email: '',
-        password: ''
-      })
+    const data = {
+      email: this.state.email,
+      password: this.state.password
     }
+    this.props.logIn(data)
+    console.log(data);
   }
 
   componentDidUpdate() {
@@ -140,4 +126,7 @@ const styles = StyleSheet.create({
   }
 })
 
+Login.propTypes = {
+  logIn: PropTypes.func
+}
 export default Login;

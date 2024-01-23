@@ -4,7 +4,7 @@ import { shallow } from 'enzyme'
 import WithLogging from './WithLogging'
 
 
-const TestComponent = () => <p>Test Component</p>;
+const TestComponent = () => <p>Test Components</p>;
 
 describe("WithLogging tests", () => {
   it("should call console.log on mount and dismount", () => {

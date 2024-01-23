@@ -106,4 +106,9 @@ describe('log function', () => {
     expect(spy).toBeCalledWith(1);
     spy.mockRestore();
   })
+  it("doesnt re-render when the list passed as prop is the same", () => {
+    const wrapper = shallow(<Notifications displayDrawer={true} listNotifications={listNotifications} />);
+
+    expect(wrapper.instance().shouldComponentUpdate(listNotifications)).toBe(false);
+  });
 })

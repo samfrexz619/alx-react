@@ -76,7 +76,7 @@ App.defaultProps = {
   isLoggedIn: false,
   logOut: () => {
     return
-  },
+},
 };
 
 App.propTypes = {

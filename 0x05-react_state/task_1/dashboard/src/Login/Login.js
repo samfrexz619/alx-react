@@ -13,8 +13,8 @@ class Login extends React.Component {
        enableSubmit: false
     }
 
-    // this.handleEmailChange = this.handleEmailChange.bind(this);
-    // this.handlePasswordChange = this.handlePasswordChange.bind(this);
+    this.handleEmailChange = this.handleChangeEmail.bind(this);
+    this.handlePasswordChange = this.handleChangePassword.bind(this);
   }
 
   handleChangeEmail = (e) => {
