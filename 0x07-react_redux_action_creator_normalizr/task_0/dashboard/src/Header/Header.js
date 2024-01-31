@@ -9,14 +9,15 @@ class Header extends React.Component {
 
   render() {
     const {user, logOut} = this.context
-    console.log(user)
+    // console.log(user)
+
     return (
       <>
         <header className={css(styles.AppHeader)}>
           <img src={logo} alt="logo" width={300} />
           <h1>School dashboard</h1>
         </header>
-        { user.isLoggedIn &&
+        { user?.isLoggedIn &&
           (<section id='logoutSection' style={{color: 'red'}}>
             <h2>
               Welcome <strong>{ user.email }</strong>
@@ -24,7 +25,7 @@ class Header extends React.Component {
                 <i>(logOut)</i>
               </a>
             </h2>
-          </section>)
+          </section>) 
         }
       </>
     );

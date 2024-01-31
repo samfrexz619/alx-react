@@ -13,7 +13,7 @@ const Login = (props) => {
 
   const handleLoginSubmit = (e) => {
     e.preventDefault();
-    props.logIn(e.target.elements.email?.value, e.target.elements.password?.value);
+    props.logIn(e.target.email?.value, e.target.password?.value);
   };
 
   const handleChangeEmail = (e) => {
@@ -25,7 +25,7 @@ const Login = (props) => {
   };
 
   useEffect(() => {
-    if (email != '' && password != '') {
+    if (email !== '' && password !== '') {
       setEnableSubmit(true);
     } else {
       if (enableSubmit != false) {
