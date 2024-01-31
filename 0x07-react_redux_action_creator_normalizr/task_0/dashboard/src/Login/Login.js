@@ -13,11 +13,13 @@ const Login = (props) => {
 
   const handleLoginSubmit = (e) => {
     e.preventDefault();
-    props.logIn(e.target.elements.email.value, e.target.elements.password.value);
+    props.logIn(e.target.elements.email?.value, e.target.elements.password?.value);
   };
+
   const handleChangeEmail = (e) => {
     setEmail(e.target.value);
   };
+
   const handleChangePassword = (e) => {
     setPassword(e.target.value);
   };

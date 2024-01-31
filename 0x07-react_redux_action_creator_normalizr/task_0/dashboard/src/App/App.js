@@ -67,6 +67,11 @@ class App extends React.Component {
     })
   }
 
+  markNotificationAsRead(id) {
+    const newList = this.state.listNotifications.filter(not => not.id !== id);
+    this.setState({ listNotifications: newList });
+  }
+
 
  componentDidMount() {
   window.addEventListener('keydown', this.handleKeyBoard)
@@ -102,6 +107,7 @@ class App extends React.Component {
                 listNotifications={this.listNotifications}
                 handleDisplayDrawer={this.handleDisplayDrawer}
                 handleHideDrawer={this.handleHideDrawer}
+                markNotificationAsRead={this.markNotificationAsRead}
               />
             </div>
             <Header />
