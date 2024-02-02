@@ -1,5 +1,5 @@
 // const notificationDatas = require('../../../../notifications.json');
-import * as notificationDatas from '../../../../notifications.json'
+import * as notificationDatas from '../../dist/notifications.json'
 import { normalize, schema } from "normalizr";
 
 
@@ -11,7 +11,7 @@ const notification = new schema.Entity("notification", {
   context: message,
 });
 
-export const normalized = normalize(notificationData, [notification]);
+export const normalized = normalize(notificationDatas, [notification]);
 
 
  export const getAllNotificationsByUser = (userId) => {
