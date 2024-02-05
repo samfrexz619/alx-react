@@ -27,3 +27,7 @@ export const normalized = normalize(notificationDatas, [notification]);
 
   return dataOutput;
 };
+
+export const notificationsNormalizer = (data) => {
+  return normalize(data, [notification]).entities
+}
